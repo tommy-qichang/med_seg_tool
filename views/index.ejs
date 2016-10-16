@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Segmentation System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Medical Segmentation Tool(MST)</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Scans ID:<span class="sr-only">(current)</span></a></li>
+                <% for (var key in info){%>
+                    <li><a href="#" onclick="viewDetails('<%=key%>')"><%=key%><span class="badge"><%= info[key].slideIndicator.reduce(function(a, b){if(b<2){return a+b;}else{return a;}})%></span></a></li>
+                <%}%>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Details</h1>
+
+            <div class="row placeholders" id="details">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    var annotationInfo = <%- JSON.stringify(info) %>;
+
+    function viewDetails(id){
+        var detailInfo = annotationInfo[id];
+        if (detailInfo == undefined) return;
+        var slideIndicator = detailInfo.slideIndicator;
+        var detailHTML = [];
+        var iconMap = {
+            0:'',
+            1:'glyphicon-question-sign',
+            2:'glyphicon-ok-sign',
+            3:'glyphicon-ok-sign'
+        }
+
+        for(var i=0,len = slideIndicator.length;i<len;i++){
+            var strId = '0'+(i+1);
+            strId = strId.substring(strId.length-2);
+            var indicator = slideIndicator[i];
+            var annotated = indicator>=2?"&annotated=true":"";
+
+            var itemHTML = `<div class="col-xs-4 col-sm-2 placeholder"><a target="_blank" href="detail?view=edit&scan=${id}&id=${strId}${annotated}"><img src="data/images/${id}/imgs/ser002img000${strId}.dcm.jpeg" width="150" height="150" class="img-responsive" alt="Click to Annotate"></a><h4><span class="glyphicon ${iconMap[slideIndicator[i]]}" aria-hidden="true"></span>index:${i+1}</h4></div>`;
+            detailHTML.push(itemHTML);
+        }
+        $('#details').html(detailHTML.join(''));
+    }
+</script>
+</html>
