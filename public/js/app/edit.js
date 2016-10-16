@@ -21,13 +21,13 @@ function(Layer, Annotator, util) {
   function createNavigation(params, data) {
     var id = parseInt(params.id, 10),
         container = document.createElement("div"),
-        indexAnchor = document.createElement("a"),
+        // indexAnchor = document.createElement("a"),
         indexAnchorText = document.createTextNode("Index"),
         prevAnchorText = document.createTextNode("Prev"),
         nextAnchorText = document.createTextNode("Next"),
         prevAnchor, nextAnchor;
     indexAnchor.href = util.makeQueryParams({ view: "index" });
-    indexAnchor.appendChild(indexAnchorText);
+    // indexAnchor.appendChild(indexAnchorText);
     if (id > 0) {
       prevAnchor = document.createElement("a");
       prevAnchor.appendChild(prevAnchorText);
@@ -224,7 +224,7 @@ function(Layer, Annotator, util) {
         data: {scan:params.scan,id:params.id,data:data},
         url:'save',
         success:function(){
-          alert('right!');
+          alert('Saved');
         }
 
       });
