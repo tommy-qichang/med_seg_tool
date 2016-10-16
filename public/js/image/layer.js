@@ -59,20 +59,23 @@ define(function() {
     if (typeof options.onload === "function")
       options.onload.call(this);
 
-    this._attachROI();
+    this._attachROI(options);
   };
 
-  Layer.prototype._attachROI = function(){
+  Layer.prototype._attachROI = function(options){
     var parentClassName = this.canvas.parentElement.className;
     if(!/disp-container/.test(parentClassName)) return;
 
+    var defaultWidth = 512;
+    var defaultHeight = 512;
     var ctx = this.canvas.getContext('2d');
     var id = getParameterByName("id");
-    var annotations = annotationInfo.slideAnnoLocation[parseInt(id)];
+    var annotations = annotationInfo.slideAnnoLocation[parseInt(id)-1];
     if(annotations == undefined)return;
     for(var i =0,len=annotations.length;i<len;i++){
       var anno = annotations[i];
-      ctx.rect(anno.xmin,anno.ymin,anno.xmax - anno.xmin,anno.ymax-anno.ymin);
+      var WidthRatio = options.width/defaultWidth;
+      ctx.rect(anno.xmin*WidthRatio,anno.ymin*WidthRatio,(anno.xmax - anno.xmin)*WidthRatio,(anno.ymax-anno.ymin)*WidthRatio);
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#ff0000';
       ctx.stroke();
