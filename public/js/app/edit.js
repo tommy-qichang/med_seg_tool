@@ -22,11 +22,11 @@ function(Layer, Annotator, util) {
     var id = parseInt(params.id, 10),
         container = document.createElement("div"),
         // indexAnchor = document.createElement("a"),
-        indexAnchorText = document.createTextNode("Index"),
+        // indexAnchorText = document.createTextNode("Index"),
         prevAnchorText = document.createTextNode("Prev"),
         nextAnchorText = document.createTextNode("Next"),
         prevAnchor, nextAnchor;
-    indexAnchor.href = util.makeQueryParams({ view: "index" });
+    // indexAnchor.href = util.makeQueryParams({ view: "index" });
     // indexAnchor.appendChild(indexAnchorText);
     if (id > 0) {
       prevAnchor = document.createElement("a");
