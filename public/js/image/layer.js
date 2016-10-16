@@ -74,8 +74,8 @@ define(function() {
     if(annotations == undefined)return;
     for(var i =0,len=annotations.length;i<len;i++){
       var anno = annotations[i];
-      var WidthRatio = options.width==undefined?defaultWidth:options.width/defaultWidth;
-      var HeightRatio = options.height==undefined?defaultHeight:options.height/defaultHeight;
+      var WidthRatio = options.width==undefined?1:options.width/defaultWidth;
+      var HeightRatio = options.height==undefined?1:options.height/defaultHeight;
       ctx.rect(anno.xmin*WidthRatio,anno.ymin*HeightRatio,(anno.xmax - anno.xmin)*WidthRatio,(anno.ymax-anno.ymin)*HeightRatio);
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#ff0000';
