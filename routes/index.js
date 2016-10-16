@@ -62,6 +62,7 @@ router.post('/save', function(req, res, next) {
   var id = req.body['id'];
   var path = `public/data/annotations/${scanId}/`;
   var fileName = `ser002img000${id}.png`;
+  var annoTimeSpend = req.body['annoTimespend'];
   data = req.body['data'];
   if(scanId == undefined || id == undefined || data == undefined){
     res.status(400);
@@ -81,6 +82,12 @@ router.post('/save', function(req, res, next) {
     }else if(indicator == 1){
       jsonFile.slideIndicator[index] = 3;
     }
+    if(jsonFile.annoTimeSpend == undefined){
+      jsonFile.annoTimeSpend = annoTimeSpend;
+    }else{
+      jsonFile.annoTimeSpend += ("|"+annoTimeSpend);
+    }
+
     saveOneAnnotationInfo(scanId+".json",jsonFile);
     res.status(200);
     res.send('success');

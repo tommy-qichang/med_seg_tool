@@ -219,9 +219,11 @@ function(Layer, Annotator, util) {
     exportButton.className = "edit-sidebar-submit";
     exportButton.addEventListener("click", function () {
       data = annotator.export();
+      var annoTimespend = (new Date().getTime() - startTimeStamp.getTime())/1000;
+
       $.ajax({
         method:'POST',
-        data: {scan:params.scan,id:params.id,data:data},
+        data: {scan:params.scan,id:params.id,data:data,annoTimespend : annoTimespend},
         url:'save',
         success:function(){
           alert('Saved');
