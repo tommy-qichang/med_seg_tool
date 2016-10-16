@@ -473,7 +473,7 @@ function(Layer, Annotator, util) {
           width: params.width,
           height: params.height,
           colormap: data.colormap,
-          superpixelOptions: { method: "slic", regionSize: 25 },
+          superpixelOptions: { method: "watershed", regionSize: 20, currentConfig:5 },
           onload: function () {
             if (isAnnotated(params))
               annotator.import(getCurrentAnnoImageURL(params));
