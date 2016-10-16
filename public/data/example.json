@@ -1,0 +1,12 @@
+{
+  "labels": [
+    "background",
+    "Lateral_Ventricle",
+    "Ischemic_Stroke",
+    "Hemorrhagic_Stroke"
+  ],
+  "imageURLs": [
+  ],
+  "annotationURLs": [
+  ]
+}
