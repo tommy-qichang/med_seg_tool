@@ -50,7 +50,7 @@ function(Layer, Annotator, util) {
       nextAnchor = nextAnchorText;
     container.appendChild(prevAnchor);
     container.appendChild(document.createTextNode(" "));
-    container.appendChild(indexAnchor);
+    // container.appendChild(indexAnchor);
     container.appendChild(document.createTextNode(" "));
     container.appendChild(nextAnchor);
     container.classList.add("edit-top-menu-block");
