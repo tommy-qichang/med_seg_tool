@@ -150,9 +150,9 @@ function(Layer, Annotator, util) {
     imageButton.appendChild(document.createTextNode("contrast"));
     imageButton.addEventListener("click", function () {
       if (imageButton.classList.contains("edit-image-top-button-enabled"))
-        annotator.hide("image");
+        annotator.hide("visualization");
       else
-        annotator.show("image");
+        annotator.show("visualization");
       imageButton.classList.toggle("edit-image-top-button-enabled");
     });
     alphaPlusButton.className = "edit-image-top-button";
