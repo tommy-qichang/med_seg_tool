@@ -27,8 +27,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar"><div class="active"><a href="#">Scans ID:<span class="sr-only">(current)</span></a></div></ul>
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Scans ID:<span class="sr-only">(current)</span></a></li>
+
                 <% for (var key in info){%>
                     <li><a href="#" onclick="viewDetails('<%=key%>')"><%=key%><span class="badge"><%= info[key].slideIndicator.reduce(function(a, b){if(b<2){return a+b;}else{return a;}})%></span></a></li>
                 <%}%>
@@ -71,6 +72,19 @@
             detailHTML.push(itemHTML);
         }
         $('#details').html(detailHTML.join(''));
+
+        $('.sidebar li').click(function(dom){
+            console.log(dom);
+
+            var curTarget = dom.currentTarget;
+            if(curTarget!=undefined){
+                $('.sidebar li').removeClass("active");
+                $(curTarget).addClass("active");
+                var lists = curTarget.parentElement().childNodes;
+
+
+            }
+        })
     }
 </script>
 </html>

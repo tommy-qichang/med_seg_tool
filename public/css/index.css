@@ -114,3 +114,7 @@ body {
 .glyphicon-question-sign{
     color: red;
 }
+.nav-sidebar div a{
+    display: block;
+    padding:10px 20px;
+}

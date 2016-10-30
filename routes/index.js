@@ -83,9 +83,13 @@ router.post('/save', function(req, res, next) {
       jsonFile.slideIndicator[index] = 3;
     }
     if(jsonFile.annoTimeSpend == undefined){
-      jsonFile.annoTimeSpend = annoTimeSpend;
+
+      jsonFile.annoTimeSpend =[];
+      jsonFile.annoTimeSpend[index] = annoTimeSpend;
+    }else if(jsonFile.annoTimeSpend[index]==null){
+      jsonFile.annoTimeSpend[index]=annoTimeSpend;
     }else{
-      jsonFile.annoTimeSpend += ("|"+annoTimeSpend);
+      jsonFile.annoTimeSpend[index] += ("|"+annoTimeSpend);
     }
 
     saveOneAnnotationInfo(scanId+".json",jsonFile);
