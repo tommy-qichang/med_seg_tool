@@ -9,7 +9,9 @@ mv IM* dicom
 cd dicom
 num=$(find . -maxdepth 1 -type f|wc -l)
 echo $num
-cd ../..
+cd ..
+rm -rf dicom
+cd ..
 echo \{\"dcmid\":\"$2\",\"slideNum\":$num\} > $1.json
 
 
