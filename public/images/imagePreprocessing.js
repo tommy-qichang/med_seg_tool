@@ -59,9 +59,10 @@ function convertDCM(list,rootPath){
         var root = path.resolve("./convert.sh").replace(' ','\\ ');
         var folder = path.resolve(path.join(rootPath,list[i])).replace(' ','\\ ');
         var item = path.basename(folder);
+        var dcm2jpg = path.resolve("./dcm4che/bin/dcm2jpg").replace(' ','\\ ');
         // var imgFolder = path.resolve(dir,item,"./dicom").replace(' ','\\ ');
         // var cmd = root+' '+dcmFolder+' ' +imgFolder;
-        var result = exec(root+' ' +folder+' '+item);
+        var result = exec(root+' ' +folder+' '+item+" "+dcm2jpg);
     }
 
 }
